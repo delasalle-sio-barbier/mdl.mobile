@@ -397,8 +397,17 @@ class DAO
 		$req->bindValue("idReservation", $idReservation, PDO::PARAM_INT);
 		
 		// exécution de la requete
-		$req->execute();
+		$req->execute();		
+		$uneLigne = $req->fetch(PDO::FETCH_OBJ);
 		
+		if($uneLigne=="")
+		{
+			return false;
+		}
+		else 
+		{
+			return true;
+		}
 		// libère les ressources du jeu de données
 		$req->closeCursor();
 				
@@ -520,11 +529,13 @@ class DAO
 	public function aPasseDesReservations($name)
 	{	
 		//récupération de reservations
-		$txt_req = "Select mrbs_entry.id";
-		$txt_req = $txt_req . "From mrbs_entry";
-		$txt_req = $txt_req . "mrbs_entry.create_by= :name";
-		$txt_req = $txt_req . "";
+		$txt_req = "Select mrbs_entry.id ";
+		$txt_req = $txt_req . "From mrbs_entry ";
+		$txt_req = $txt_req . "Where mrbs_entry.create_by= :name ;";
 		$req = $this->cnx->prepare($txt_req);
+				
+		//liason du paramètres à la requete
+		$req->bindValue("name", $name, PDO::PARAM_STR);
 	}
 	
 	// supprime l'utilisateur dans la bdd
@@ -538,13 +549,15 @@ class DAO
 		$req = $this->cnx->prepare($txt_req);
 		
 		//liason du paramètres à la requete
-		$req->bindValue("name", $name, PDO::PARAM_INT);
+		$req->bindValue("name", $name, PDO::PARAM_STR);
 		
 		// exécution de la requete
 		$req->execute();
 		
 		// libère les ressources du jeu de données
 		$req->closeCursor();
+		
+		
 		
 	}	
 	

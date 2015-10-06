@@ -37,15 +37,15 @@ echo "Un digicode aléatoire : <b>" . $dao->genererUnDigicode() . "</b><br>";
 echo "Un digicode aléatoire : <b>" . $dao->genererUnDigicode() . "</b><p>";
 
 
-// test de la m�thode creerLesDigicodesManquants --------------------------------------------------
-// modifi� par Jim le 24/9/2015
+// test de la méthode creerLesDigicodesManquants --------------------------------------------------
+// modifié par Jim le 24/9/2015
 echo "<h3>Test de creerLesDigicodesManquants : </h3>";
 $dao->creerLesDigicodesManquants();
 echo "<p>Pour ce test, videz auparavant la table <b>mrbs_entry_digicode</b><br>";
 echo " puis vérifiez que la table est reconstruite après exécution du test.</p>";
 
 
-// test de la m�thode listeReservations -----------------------------------------------------------
+// test de la méthode listeReservations -----------------------------------------------------------
 // modifi� par Jim le 25/9/2015
 echo "<h3>Test de listeReservations : </h3>";
 $lesReservations = $dao->listeReservations("jim");
@@ -212,18 +212,18 @@ else
 
 // // test de la m�thode aPasseDesReservations -------------------------------------------------------
 // // pour ce test, choisir un utilisateur avec des r�servations et un autre sans r�servation
-// // modifi� par Jim le 28/9/2015
-// echo "<h3>Test de aPasseDesReservations : </h3>";
-// $ok = $dao->aPasseDesReservations("zenelsy");
-// if ($ok)
-// 	echo "<p>zenelsy a bien pass� des r�servations !<br>";
-// else
-// 	echo "<p>zenelsy n'a pas pass� de r�servations !<br>";
-// $ok = $dao->aPasseDesReservations("admin");
-// if ($ok)
-// 	echo "admin a bien pass� des r�servations !</p>";
-// else
-// 	echo "admin n'a pas pass� de r�servations !</p>";
+// modifi� par Jim le 28/9/2015
+echo "<h3>Test de aPasseDesReservations : </h3>";
+$ok = $dao->aPasseDesReservations("zenelsy");
+if ($ok)
+	echo "<p>zenelsy a bien pass� des r�servations !<br>";
+else
+	echo "<p>zenelsy n'a pas pass� de r�servations !<br>";
+$ok = $dao->aPasseDesReservations("admin");
+if ($ok)
+	echo "admin a bien pass� des r�servations !</p>";
+else
+	echo "admin n'a pas pass� de r�servations !</p>";
 
 
 // // test de la m�thode supprimerUtilisateur --------------------------------------------------------
