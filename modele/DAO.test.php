@@ -230,7 +230,7 @@ else
 
 
 
-// // test de la m�thode supprimerUtilisateur --------------------------------------------------------
+// // test de la méthode supprimerUtilisateur --------------------------------------------------------
 // // modifi� par Jim le 28/9/2015
 // echo "<h3>Test de supprimerUtilisateur : </h3>";
 // $ok = $dao->supprimerUtilisateur("jim1");
