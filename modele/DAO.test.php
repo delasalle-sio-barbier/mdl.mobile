@@ -214,16 +214,20 @@ else
 // // pour ce test, choisir un utilisateur avec des r�servations et un autre sans r�servation
 // modifi� par Jim le 28/9/2015
 echo "<h3>Test de aPasseDesReservations : </h3>";
-$ok = $dao->aPasseDesReservations("zenelsy");
+$ok = $dao->aPasseDesReservations("antoineq");
+
 if ($ok)
-	echo "<p>zenelsy a bien pass� des r�servations !<br>";
+	echo "<p>antoineq a bien passé des réservations !<br>";
 else
-	echo "<p>zenelsy n'a pas pass� de r�servations !<br>";
-$ok = $dao->aPasseDesReservations("admin");
+	echo "<p>antoineq n'a pas passé de réservations !<br>";
+
+$ok = $dao->aPasseDesReservations("minets");
+
 if ($ok)
-	echo "admin a bien pass� des r�servations !</p>";
+	echo "minets a bien passé des réservations !</p>";
 else
-	echo "admin n'a pas pass� de r�servations !</p>";
+	echo "minets n'a pas passé de réservations !</p>";
+
 
 
 // // test de la m�thode supprimerUtilisateur --------------------------------------------------------

@@ -394,20 +394,8 @@ class DAO
 		$req = $this->cnx->prepare($txt_req);
 		
 		//liason du paramètres à la requete
-		$req->bindValue("idReservation", $idReservation, PDO::PARAM_INT);
-		
-		// exécution de la requete
-		$req->execute();		
-		$uneLigne = $req->fetch(PDO::FETCH_OBJ);
-		
-		if($uneLigne=="")
-		{
-			return false;
-		}
-		else 
-		{
-			return true;
-		}
+		$req->bindValue("idReservation", $idReservation, PDO::PARAM_INT);		
+
 		// libère les ressources du jeu de données
 		$req->closeCursor();
 				
@@ -533,9 +521,21 @@ class DAO
 		$txt_req = $txt_req . "From mrbs_entry ";
 		$txt_req = $txt_req . "Where mrbs_entry.create_by= :name ;";
 		$req = $this->cnx->prepare($txt_req);
-				
+		
 		//liason du paramètres à la requete
 		$req->bindValue("name", $name, PDO::PARAM_STR);
+		// exécution de la requete
+		$req->execute();
+		$uneLigne = $req->fetch(PDO::FETCH_OBJ);
+		
+		if($uneLigne=="")
+		{			
+			return false;
+		}
+		else
+		{			
+			return true;
+		}
 	}
 	
 	// supprime l'utilisateur dans la bdd
