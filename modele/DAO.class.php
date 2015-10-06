@@ -447,9 +447,6 @@ class DAO
 		
 		// libère les ressources du jeu de données
 		$req->closeCursor();
-		
-		
-		
 	}
 
 	// envoie un mail à l'utilisateur avec son nouveau mot de passe
@@ -521,14 +518,33 @@ class DAO
 	// recherche si un utilisateur a passé des réservations à venir et retourne un booléen
 	// modifié par Jim le 6/5/2015
 	public function aPasseDesReservations($name)
-	{	// A FAIRE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	{	
+		//récupération de reservations
+		$txt_req = "Select mrbs_entry.id";
+		$txt_req = $txt_req . "From mrbs_entry";
+		$txt_req = $txt_req . "mrbs_entry.create_by= :name";
+		$txt_req = $txt_req . "";
+		$req = $this->cnx->prepare($txt_req);
 	}
 	
 	// supprime l'utilisateur dans la bdd
-	// modifié par Jim le 6/5/2015
+	// modifié par MrJ le 6/10/2015
 	public function supprimerUtilisateur($name)
 	{	
-		//récupération de reservations 
+		
+		//récupération de reservations
+		$txt_req = "Delete from mrbs_user ";
+		$txt_req = $txt_req . "where name = :name";
+		$req = $this->cnx->prepare($txt_req);
+		
+		//liason du paramètres à la requete
+		$req->bindValue("name", $name, PDO::PARAM_INT);
+		
+		// exécution de la requete
+		$req->execute();
+		
+		// libère les ressources du jeu de données
+		$req->closeCursor();
 		
 	}	
 	
