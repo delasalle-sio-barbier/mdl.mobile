@@ -565,7 +565,7 @@ class DAO
 	// le résultat est fourni sous forme d'une collection d'objets Salle
 	// modifié par Jim le 6/5/2015
 	function listeSalles()
-	{	// A FAIRE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	{	
 	}
 }
 	
