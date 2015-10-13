@@ -556,9 +556,6 @@ class DAO
 		
 		// libère les ressources du jeu de données
 		$req->closeCursor();
-		
-		
-		
 	}	
 	
 	// fournit la liste des salles disponibles à la réservation
