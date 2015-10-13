@@ -516,14 +516,18 @@ class DAO
 	// modifié par Jim le 6/5/2015
 	public function aPasseDesReservations($name)
 	{	
+		//la date d'aujourd'hui au format UNIX
+		$date=time(U);
 		//récupération de reservations
 		$txt_req = "Select mrbs_entry.id ";
 		$txt_req = $txt_req . "From mrbs_entry ";
-		$txt_req = $txt_req . "Where mrbs_entry.create_by= :name ;";
+		$txt_req = $txt_req . "Where mrbs_entry.create_by= :name "
+		$txt_req = $txt_req . "And end_time";
 		$req = $this->cnx->prepare($txt_req);
 		
 		//liason du paramètres à la requete
 		$req->bindValue("name", $name, PDO::PARAM_STR);
+		$req->bindValue("name", $name, PDO::PARAM_INT);
 		// exécution de la requete
 		$req->execute();
 		$uneLigne = $req->fetch(PDO::FETCH_OBJ);
@@ -542,7 +546,19 @@ class DAO
 	// modifié par MrJ le 6/10/2015
 	public function supprimerUtilisateur($name)
 	{	
-		
+		//vérification si l'utilisateur à passer des réservations avant de supprimer
+		$aPasserDesReservations=$dao->aPasserDesReservations($name);
+
+		if($aPasserDesReservations == true)
+		{
+			//déclaration du tableau qui va récuperer les résevations
+			$lesReservationsPassees = $dao -> listeReservation($name);
+			$i = 1;
+			while($lesReservations[$i]=="")
+			{
+				$dao -> annulerReservation($this -> id);
+			}
+		}
 		//récupération de reservations
 		$txt_req = "Delete from mrbs_user ";
 		$txt_req = $txt_req . "where name = :name";
