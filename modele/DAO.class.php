@@ -516,18 +516,16 @@ class DAO
 	// modifié par Jim le 6/5/2015
 	public function aPasseDesReservations($name)
 	{	
-		//la date d'aujourd'hui au format UNIX
-		$date=time(U);
+		
 		//récupération de reservations
 		$txt_req = "Select mrbs_entry.id ";
 		$txt_req = $txt_req . "From mrbs_entry ";
-		$txt_req = $txt_req . "Where mrbs_entry.create_by= :name "
-		$txt_req = $txt_req . "And end_time";
+		$txt_req = $txt_req . "Where mrbs_entry.create_by= :name ";
 		$req = $this->cnx->prepare($txt_req);
 		
 		//liason du paramètres à la requete
 		$req->bindValue("name", $name, PDO::PARAM_STR);
-		$req->bindValue("name", $name, PDO::PARAM_INT);
+
 		// exécution de la requete
 		$req->execute();
 		$uneLigne = $req->fetch(PDO::FETCH_OBJ);
@@ -579,6 +577,23 @@ class DAO
 	// modifié par Jim le 6/5/2015
 	function listeSalles()
 	{	
+<<<<<<< HEAD
+=======
+		
+		$txt_req = "Select room_name from mrbs_room ";
+			
+		$req = $this->cnx->prepare($txt_req);
+		
+
+		// exécution de la requete
+		
+		$req->execute();
+		$uneLigne = $req->fetch(PDO::FETCH_OBJ);
+		return($uneLigne->room_name);
+		
+		// libère les ressources du jeu de données
+		$req->closeCursor();
+>>>>>>> branch 'master' of https://github.com/delasalle-sio-barbier/mdl.mobile.git
 	}
 }
 	
